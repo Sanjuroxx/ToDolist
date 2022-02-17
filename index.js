@@ -2,7 +2,7 @@ const express=require("express")
 const mongoose=require("mongoose")
 
 const rolecontroller =require("./controller/role-controller")
-const usercontroller =require("./controller/user-controller")
+
 
 const app=express()
 
@@ -24,7 +24,7 @@ mongoose.connect('mongodb://localhost:27017/ToDolist',function(err){
 
 //url of role
 app.post("/roles",rolecontroller.addRole)
-app.post("/users",usercontroller.addUser)
+
 
 //server
 
