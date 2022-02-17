@@ -24,7 +24,9 @@ mongoose.connect('mongodb://localhost:27017/ToDolist',function(err){
 
 //url of role
 app.post("/roles",rolecontroller.addRole)
-
+app.get("/roles",rolecontroller.getAllRole)
+app.delete("/roles/:roleId",rolecontroller.deleteRole)
+app.put("/roles",rolecontroller.updateRole)
 
 //server
 
