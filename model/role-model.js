@@ -1,14 +1,14 @@
 const mongoose = require("mongoose")
 
 //schema
-
-let Roleschema = new mongoose.Schema({
+let RoleSchema = new mongoose.Schema({
     roleName:{
         type:String
     }
 })
+
 //model
 
-let RoleModel =mongoose.model("role",Roleschema)
+let RoleModel = mongoose.model("role",RoleSchema)//roles
 
-module.exports=RoleModel
+module.exports = RoleModel
