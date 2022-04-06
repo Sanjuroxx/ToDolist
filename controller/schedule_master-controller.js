@@ -46,7 +46,7 @@ module.exports.getAllSchedule_master = function(req,res){
 module.exports.deleteSchedule_master = function(req,res){
     let schedule_masterId = req.params.schedule_masterId
 
-    //delete from role where roleId = 1 
+   
     Schedule_masterModel.deleteOne({"_id":schedule_masterId},function(err,data){
         if(err){
             res.json({msg:"Something went wrong!!!",status:-1,data:err})

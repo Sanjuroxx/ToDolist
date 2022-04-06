@@ -1,5 +1,6 @@
 const express = require("express")
 const mongoose =require("mongoose")
+const cors = require("cors")
 
 const rolecontroller=require("./controller/role-controller")
 const usercontroller = require("./controller/user-controller")
@@ -8,11 +9,12 @@ const categorycontroller = require("./controller/category-controller")
 const schedule_mastercontroller = require("./controller/schedule_master-controller")
 const daily_schedulecontroller = require("./controller/daily_schedule-controller")
 const remindercontroller = require("./controller/reminder-controller")
+const taskcontroller = require("./controller/Task-controller")
 const app = express()
 //middle ware
 app.use(express.json())//mobile accept json data
 app.use(express.urlencoded({extended:true}))//browser 
-
+app.use(cors())
 
 
 
@@ -35,11 +37,18 @@ app.put("/roles",rolecontroller.updateRole)
 //user
 
 app.post("/users",usercontroller.addUser)
-app.get("/users",usercontroller.getAllUsers)
+app.get("/users",usercontroller.getAllusers)
 app.delete("/users/:userId",usercontroller.deleteUser)
-app.put("/users",usercontroller.updateUser)
+app.put("/users/:userId",usercontroller.updateUser)
+app.get("/users/:userId",usercontroller.getOneusers)
+
 
 app.post("/login",usercontroller.login)
+
+
+//forgot password
+app.post('/forgotPassword',usercontroller.mailLinkToResetPassword)
+app.post('/reset',usercontroller.resetPassword)
 
 
 //schedule_type
@@ -76,8 +85,15 @@ app.delete("/daily_schedules/:daily_scheduleId",daily_schedulecontroller.deleteD
 app.post("/reminders",remindercontroller.addReminder)
 app.get("/reminders",remindercontroller.getAllReminder)
 app.delete("/reminders/:reminderId",remindercontroller.deleteReminder)
+app.put("/reminders",remindercontroller.updateReminder)
 
+//Task
 
+app.post("/tasks",taskcontroller.addTask)
+app.get("/tasks",taskcontroller.getAllTasks)
+app.get("/tasks/:TaskId",taskcontroller.getOneTasks)
+app.delete("/tasks/:TaskId",taskcontroller.deleteTask)
+app.put("/tasks/:TaskId",taskcontroller.updateTask)
 // //url 
 // app.get("/",function(req,rest){
 //     rest.write("welcome...")
@@ -89,6 +105,6 @@ app.delete("/reminders/:reminderId",remindercontroller.deleteReminder)
 
 
 //server
-app.listen(3000,function(){
-    console.log("server started on 3000");
+app.listen(3001,function(){
+    console.log("server started on 3001");
 })

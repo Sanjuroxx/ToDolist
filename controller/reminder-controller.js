@@ -47,3 +47,18 @@ module.exports.deleteReminder = function(req,res){
          }
      })
 }
+//update
+module.exports.updateReminder = function (req, res) {
+    let reminderId = req.body.reminderId
+    let remDate = req.body.remDate
+    let description = req.body.description
+
+    ReminderModel.updateOne({ _id: reminderId ,remDate:remDate,description:description }, function (err, data) {
+        if (err) {
+            res.json({ msg: "Something went wrong!!!", status: -1, data: err })
+        } else {
+            res.json({ msg: "updated...", status: 200, data: data })
+        }
+    })
+
+}
