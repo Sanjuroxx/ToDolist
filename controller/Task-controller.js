@@ -7,12 +7,14 @@ module.exports.addTask = function (req, res) {
     let Description = req.body.Description
     let Time = req.body.Time
     let Priority = req.body.Priority
+    let author =req.body.author
 
     let Task = new TaskModel({
         TaskName: TaskName,
         Description: Description,
          Time:Time,
-        Priority: Priority
+        Priority: Priority,
+        author:author
     })
 
 

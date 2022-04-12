@@ -12,6 +12,10 @@ let Taskschema = new mongoose.Schema({
     },
     Priority:{
         type:String
+    },
+    author:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"users"
     }
 })
 

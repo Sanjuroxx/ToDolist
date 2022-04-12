@@ -160,7 +160,7 @@ module.exports.mailLinkToResetPassword = function (req, res) {
                 const token = crypto.randomBytes(20).toString('hex')
                 data.update({
                     resetPasswordToken: token,
-                    resetPasswordExpires: Date.now() + 3600000
+                    resetPasswordExpires: Date.now() + 360
                 });
                 var transporter = nodemailer.createTransport({
                     service:'gmail',
